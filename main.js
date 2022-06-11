@@ -32,7 +32,6 @@ function draw(){
        leftWristY_number= Number(leftWristY)
        remove_decimals = Math.floor(leftWristY_number)
        volume = remove_decimals/500
-       volume= volume.toFixed(1)
        song.setVolume(volume)
 
        document.getElementById("volume").innerHTML="volume = " + volume
