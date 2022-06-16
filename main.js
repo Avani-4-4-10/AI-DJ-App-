@@ -4,6 +4,7 @@ rightWristX=0
 leftWristY=0
 rightWristY=0
 scoreLeftWristy=0
+scoreRightWrist= 0 
 
 
 function preload(){
@@ -25,6 +26,33 @@ function draw(){
 
     fill("red")
     stroke("blue")
+
+    if(scoreRightWrist > 0.2){
+        circle(rightWristX , rightWristY , 20)
+
+        if(rightWristY > 0 && rightWristY <= 100){
+            song.rate(0.5)
+            document.getElementById("speed").innerHTML="Speed= 0.5x "
+        }
+        else if(rightWristY > 100 && rightWristY <= 200){
+            song.rate(1)
+            document.getElementById("speed").innerHTML = "Speed= 1x"
+        }
+        else if(rightWristY > 200 && rightWristY <= 300){
+            song.rate(1.5)
+            document.getElementById("speed").innerHTML = "Speed =1.5x"
+        }
+        else if(rightWristY > 300 && rightWristY <= 400){
+            song.rate(2)
+            document.getElementById("speed").innerHTML= "Speed =2x"
+
+        }
+        else if(rightWristY > 400 && rightWristY <= 500){
+            song.rate(2.5)
+            document.getElementById("speed").innerHTML= "Speed= 2.5x "
+        }
+
+    }
 
    if(scoreLeftWristy > 0.2){
        circle(leftWristX , leftWristY , 20)
@@ -60,9 +88,12 @@ function gotPoses(results){
         leftWristY= results[0].pose.leftWrist.y
         rightWristY= results[0].pose.rightWrist.y
         scoreLeftWristy=results[0].pose.leftWrist.confidence
+        scoreRightWrist=results[0].pose.rightWrist.confidence
 
         console.log(leftWristX , leftWristY)
         console.log(rightWristX , rightWristY)
         console.log(scoreLeftWristy)
+        console.log(scoreRightWrist)
+
     }
 }
